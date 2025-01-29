@@ -30,27 +30,28 @@
         .background span {
             position: absolute;
             font-size: 2em;
-            color: rgba(255, 223, 0, 0.6); /* Bitcoin gold color */
+            color: #f7931a; /* Bright Bitcoin Orange */
+            font-weight: bold;
             animation: float 10s linear infinite, fade 6s ease-in-out infinite;
         }
 
         @keyframes float {
             from {
                 transform: translateY(100vh);
-                opacity: 0.8;
+                opacity: 1;
             }
             to {
-                transform: translateY(-20vh);
-                opacity: 0.3;
+                transform: translateY(-10vh);
+                opacity: 0.5;
             }
         }
 
         @keyframes fade {
             0%, 100% {
-                opacity: 0.3;
+                opacity: 0.5;
             }
             50% {
-                opacity: 0.9;
+                opacity: 1;
             }
         }
 
@@ -93,12 +94,6 @@
             margin-bottom: 10px;
         }
 
-        .content p {
-            font-size: 1.2em;
-            margin: 20px 0;
-            line-height: 1.6;
-        }
-
         .cta {
             background: #0284c7;
             color: white;
@@ -121,7 +116,7 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Sliding Form */
+        /* Floating Form */
         .form-container {
             display: none;
             position: fixed;
@@ -234,20 +229,23 @@
             <option value="<1M">Under $1,000,000</option>
         </select>
 
-        <label>Investment Experience</label>
-        <select name="experience" required>
-            <option value="">Select</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </select>
-
         <button type="submit">Submit</button>
     </form>
 
     <script>
         function showForm() {
             document.getElementById('form-container').style.display = 'block';
+        }
+
+        // Bitcoin flying background
+        const background = document.getElementById('background');
+        for (let i = 0; i < 50; i++) {
+            const span = document.createElement('span');
+            span.textContent = '₿';
+            span.style.left = `${Math.random() * 100}vw`;
+            span.style.animationDuration = `${5 + Math.random() * 10}s`;
+            span.style.fontSize = `${1.5 + Math.random() * 2}em`;
+            background.appendChild(span);
         }
     </script>
 </body>
