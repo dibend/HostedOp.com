@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HostedOP | Your Trusted Bitcoin Mining Partner</title>
+    <title>HostedOP | Secure Bitcoin Mining Investments</title>
     <link rel="icon" href="https://blastlabs.net/favicon.ico" type="image/x-icon">
     <style>
         /* General Reset */
@@ -77,12 +77,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Main Content */
@@ -121,14 +117,8 @@
         }
 
         @keyframes slideUp {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         /* Sliding Form */
@@ -143,6 +133,8 @@
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
+            width: 350px;
+            max-width: 90%;
             animation: slideForm 0.6s ease-out forwards;
         }
 
@@ -150,7 +142,7 @@
             margin-bottom: 15px;
         }
 
-        .form-container input, .form-container button {
+        .form-container input, .form-container select, .form-container button {
             width: 80%;
             margin: 10px 0;
             padding: 10px;
@@ -159,7 +151,7 @@
             border-radius: 5px;
         }
 
-        .form-container input {
+        .form-container input, .form-container select {
             background: #333;
             color: #fff;
         }
@@ -171,14 +163,8 @@
         }
 
         @keyframes slideForm {
-            from {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+            from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
         /* WhatsApp Button */
@@ -219,55 +205,49 @@
 
     <div class="content">
         <h2>Welcome to HostedOP</h2>
-        <p>
-            HostedOP is a trusted provider of hosted Bitcoin mining solutions. We partner with leading providers
-            <a href="https://endlessmining.com" target="_blank">Endless Mining</a> and
-            <a href="https://terrahosting.io" target="_blank">TerraHosting</a> to offer reliable and efficient mining operations.
-        </p>
-        <p>
-            Experience unmatched performance and scalability while ensuring maximum profitability.
-        </p>
         <button class="cta" onclick="showForm()">Get Started Now</button>
     </div>
 
-    <div class="form-container" id="form-container">
-        <h3>Get Started with HostedOP</h3>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <input type="text" placeholder="Your Mining Requirements">
-        <button onclick="submitForm()">Submit</button>
-    </div>
+    <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
+        <h3>Accredited Investor Screening</h3>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
 
-    <a class="whatsapp-btn" href="https://wa.me/19085776850" target="_blank">
-        <img src="https://img.icons8.com/ios-filled/24/FFFFFF/whatsapp.png" alt="WhatsApp Logo">
-        Chat with Us
-    </a>
+        <label>Are you an accredited investor?</label>
+        <select name="accredited" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
 
-    <footer>
-        <p>© 2025 HostedOP. All Rights Reserved.</p>
-    </footer>
+        <label>Annual Income</label>
+        <select name="income" required>
+            <option value="">Select</option>
+            <option value=">200k">Over $200,000</option>
+            <option value="<200k">Under $200,000</option>
+        </select>
+
+        <label>Net Worth (excluding primary residence)</label>
+        <select name="net_worth" required>
+            <option value="">Select</option>
+            <option value=">1M">Over $1,000,000</option>
+            <option value="<1M">Under $1,000,000</option>
+        </select>
+
+        <label>Investment Experience</label>
+        <select name="experience" required>
+            <option value="">Select</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
-        // Bitcoin flying background
-        const background = document.getElementById('background');
-        for (let i = 0; i < 50; i++) {
-            const span = document.createElement('span');
-            span.textContent = '₿';
-            span.style.left = `${Math.random() * 100}vw`;
-            span.style.animationDuration = `${5 + Math.random() * 10}s`;
-            span.style.fontSize = `${1 + Math.random() * 2}em`;
-            background.appendChild(span);
-        }
-
-        // Show form animation
         function showForm() {
-            const form = document.getElementById('form-container');
-            form.style.display = 'block';
-        }
-
-        // Placeholder for form submission
-        function submitForm() {
-            alert('Form submitted! We will contact you soon.');
+            document.getElementById('form-container').style.display = 'block';
         }
     </script>
 </body>
