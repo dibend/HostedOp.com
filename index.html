@@ -231,22 +231,19 @@
 
         <button type="submit">Submit</button>
     </form>
-
     <script>
-        function showForm() {
-            document.getElementById('form-container').style.display = 'block';
-        }
         const emojis = ['₿', '☁️', '🤖', '🦾'];
-        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-        // flying background
         const background = document.getElementById('background');
+        
         for (let i = 0; i < 50; i++) {
             const span = document.createElement('span');            
-            span.textContent = randomEmoji;
+            span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
             span.style.left = `${Math.random() * 100}vw`;
             span.style.animationDuration = `${5 + Math.random() * 10}s`;
             span.style.fontSize = `${1.5 + Math.random() * 2}em`;
+            span.style.color = '#f7931a'; // Bright Bitcoin Orange
+            
             background.appendChild(span);
         }
     </script>
