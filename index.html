@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HostedOP | Secure Bitcoin Mining Investments</title>
+    <title>HostedOP | Hosted Bitcoin Mining, Cloud & Artificial Intelligence Investment</title>
     <link rel="icon" href="https://blastlabs.net/favicon.ico" type="image/x-icon">
     <style>
         /* General Reset */
@@ -195,7 +195,7 @@
 
     <header>
         <h1>HostedOP</h1>
-        <p>Powering the future of Bitcoin mining</p>
+        <p>Powering the future of Bitcoin mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
     </header>
 
     <div class="content">
@@ -236,12 +236,14 @@
         function showForm() {
             document.getElementById('form-container').style.display = 'block';
         }
-
-        // Bitcoin flying background
+        const emojis = ['₿', '☁️', '🤖', '🦾'];
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        // flying background
         const background = document.getElementById('background');
         for (let i = 0; i < 50; i++) {
-            const span = document.createElement('span');
-            span.textContent = '₿';
+            const span = document.createElement('span');            
+            span.textContent = randomEmoji;
+
             span.style.left = `${Math.random() * 100}vw`;
             span.style.animationDuration = `${5 + Math.random() * 10}s`;
             span.style.fontSize = `${1.5 + Math.random() * 2}em`;
