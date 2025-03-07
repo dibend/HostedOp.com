@@ -51,6 +51,7 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: transform 0.3s ease;
+            text-decoration: none;
         }
         .cta:hover {
             background: #026ba7;
@@ -111,13 +112,13 @@
         </div>
         <div class="slide">
             <h2>Ethereum Classic Mining Stats</h2>
-            <iframe src="https://njweb.solutions/etc" width="100%" height="300px"></iframe>
-            <p>Monitoring our mining activities on 2Miners.</p>
+            <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action.</p>
+            <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a>
         </div>
         <div class="slide">
             <h2>Unmineable LTC Hashrate Rental</h2>
-            <iframe src="https://njweb.solutions/unmineable-LTC" width="100%" height="300px"></iframe>
-            <p>Using Unmineable.com to mine multiple coins and get paid in Litecoin.</p>
+            <p>Explore how we leverage Unmineable.com to mine multiple coins and cash out in Litecoin. Flexible, efficient, and built for profit—see the numbers that matter.</p>
+            <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a>
         </div>
         <div class="form-container">
             <h3>Contact Us</h3>
@@ -128,8 +129,8 @@
             </form>
         </div>
     </div>
-    <div class="nav-btn left" onclick="prevSlide()">&#10094;</div>
-    <div class="nav-btn right" onclick="nextSlide()">&#10095;</div>
+    <div class="nav-btn left" onclick="prevSlide()">❮</div>
+    <div class="nav-btn right" onclick="nextSlide()">❯</div>
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
@@ -162,7 +163,6 @@
         for (let i = 0; i < 50; i++) {
             const span = document.createElement('span');            
             span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
             span.style.left = `${Math.random() * 100}vw`;
             span.style.animationDuration = `${5 + Math.random() * 10}s`;
             span.style.fontSize = `${1.5 + Math.random() * 2}em`;
