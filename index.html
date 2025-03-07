@@ -3,282 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HostedOp | Hosted Crypto Mining & AI Investment</title>
+    <title>HostedOp | Hosted Crypto Mining, Cloud & Artificial Intelligence Investment</title>
     <link rel="icon" href="https://blastlabs.net/favicon.ico" type="image/x-icon">
     <style>
+        /* General Reset */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             background: #000;
             color: #fff;
-            height: 100%;
-            overflow-y: auto;
+            overflow-x: hidden;
         }
-        .slide-container {
-            width: 100vw;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            background: rgba(34, 34, 34, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .slide.active {
-            opacity: 1;
-            z-index: 10;
-        }
-        .cta {
-            background: #0284c7;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-        }
-        .cta:hover {
-            background: #026ba7;
-            transform: scale(1.1);
-        }
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2em;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 50%;
-        }
-        .left { left: 20px; }
-        .right { right: 20px; }
-        .emoji-container {
+
+        /* Emoji Background Animation */
+        .background {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             z-index: -1;
             pointer-events: none;
         }
-        .emoji {
+
+        .background span {
             position: absolute;
             font-size: 2em;
             color: #f7931a; /* Bright Bitcoin Orange */
-            transition: transform 0.1s ease-out; /* Smooth out JS-driven moves */
+            font-weight: bold;
+            animation: float 10s linear infinite, fade 6s ease-in-out infinite;
         }
-        .form-container {
-            width: 100%;
-            padding: 20px;
-            background: rgba(34, 34, 34, 0.9);
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes fade {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        header {
+            background: #222;
+            color: #fff;
+            padding: 20px 10px;
             text-align: center;
-            position: relative;
-            z-index: 5;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            animation: fadeIn 2s;
         }
-        .form-container form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
         }
-        .form-container input, .form-container textarea, .form-container select {
-            padding: 10px;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 5px;
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Main Content */
+        .content {
+            text-align: center;
+            padding: 50px 20px;
+            animation: slideUp 2s;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .cta {
+            background: #0284c7;
+            color: white;
+            padding: 15px 30px;
             border: none;
-            background: #fff;
-            color: #000;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
         }
+
+        .cta:hover {
+            background: #026ba7;
+            transform: scale(1.1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Floating Form */
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+            max-width: 90%;
+            z-index: 20;
+            animation: slideForm 0.6s ease-out forwards;
+        }
+
+        .form-container h3 {
+            margin-bottom: 15px;
+        }
+
+        .form-container input, .form-container select, .form-container button {
+            width: 80%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-container input, .form-container select {
+            background: #333;
+            color: #fff;
+        }
+
         .form-container button {
             background: #0284c7;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
-        .form-container button:hover {
-            background: #026ba7;
+
+        @keyframes slideForm {
+            from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
-        .form-container label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9em;
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20c056;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            background: #222;
+            color: #fff;
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
-    <div class="emoji-container" id="emoji-container"></div>
-    <div class="slide-container" id="slides">
-        <div class="slide active">
-            <h1>Welcome to HostedOp</h1>
-            <p>Powering Crypto Mining, Cloud, and AI with Hosted Solutions.</p>
-        </div>
-        <div class="slide">
-            <h2>Ethereum Classic Mining Stats</h2>
-            <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action.</p>
-            <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a>
-        </div>
-        <div class="slide">
-            <h2>Unmineable Hashrate Rentals</h2>
-            <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results.</p>
-            <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a>
-        </div>
+    <div class="background" id="background"></div>
+
+    <header>
+        <h1>HostedOp</h1>
+        <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
+    </header>
+
+    <div class="content">
+        <h2>Welcome to HostedOp</h2>
+        <button class="cta" onclick="showForm()">Get Started Now</button>
     </div>
-    <div class="form-container">
-        <h3>Contact Us - Accredited Investors Only</h3>
-        <form action="https://blastlabs.net/hostedop" method="POST">
-            <input type="text" name="full_name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="tel" name="phone" placeholder="Phone Number" required>
-            <input type="number" name="net_worth" placeholder="Net Worth (USD)" required>
-            <input type="number" name="annual_income" placeholder="Annual Income (USD)" required>
-            <textarea name="investment_experience" placeholder="Describe your investment experience (e.g., years, asset types)" rows="4" required></textarea>
-            <select name="accreditation_status" required>
-                <option value="" disabled selected>Select Accreditation Status</option>
-                <option value="net_worth">Net Worth > $1M (excl. primary residence)</option>
-                <option value="income_individual">Income > $200K (last 2 years)</option>
-                <option value="income_joint">Joint Income > $300K (last 2 years)</option>
-                <option value="professional">Professional Credential (e.g., CFA, Series 7)</option>
-            </select>
-            <label>
-                <input type="checkbox" name="accreditation_acknowledgment" required>
-                I certify I am an accredited investor per SEC Regulation D.
-            </label>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-    <div class="nav-btn left" onclick="prevSlide()">❮</div>
-    <div class="nav-btn right" onclick="nextSlide()">❯</div>
+
+    <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
+        <h3>Accredited Investor Screening</h3>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <label>Are you an accredited investor?</label>
+        <select name="accredited" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <label>Annual Income</label>
+        <select name="income" required>
+            <option value="">Select</option>
+            <option value=">200k">Over $200,000</option>
+            <option value="<200k">Under $200,000</option>
+        </select>
+        <label>Net Worth (excluding primary residence)</label>
+        <select name="net_worth" required>
+            <option value="">Select</option>
+            <option value=">1M">Over $1,000,000</option>
+            <option value="<1M">Under $1,000,000</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="https://wa.me/1234567890" class="whatsapp-btn">Chat on WhatsApp</a>
+
+    <footer>
+        <p>© 2025 HostedOp. All rights reserved.</p>
+    </footer>
+
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) slide.classList.add('active');
-            });
+        function showForm() {
+            document.getElementById('form-container').style.display = 'block';
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
-        });
-
-        // Badass JS Emoji Animation
+        // Emoji Background Setup
         const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
-        const emojiContainer = document.getElementById('emoji-container');
-        const emojiCount = 30;
-        const emojiArray = [];
-
-        class Emoji {
-            constructor() {
-                this.element = document.createElement('span');
-                this.element.classList.add('emoji');
-                this.element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                this.x = Math.random() * window.innerWidth;
-                this.y = Math.random() * window.innerHeight;
-                this.vx = (Math.random() - 0.5) * 4; // Velocity X: -2 to 2
-                this.vy = (Math.random() - 0.5) * 4; // Velocity Y: -2 to 2
-                this.size = 1.5 + Math.random() * 2; // Random size between 1.5em and 3.5em
-                this.element.style.fontSize = `${this.size}em`;
-                this.element.style.left = `${this.x}px`;
-                this.element.style.top = `${this.y}px`;
-                emojiContainer.appendChild(this.element);
-            }
-
-            update() {
-                // Move emoji
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bounce off walls with a slight randomness
-                if (this.x <= 0 || this.x >= window.innerWidth - this.size * 20) {
-                    this.vx = -this.vx * (0.8 + Math.random() * 0.2); // Dampen and vary bounce
-                    this.x = Math.max(0, Math.min(this.x, window.innerWidth - this.size * 20));
-                }
-                if (this.y <= 0 || this.y >= window.innerHeight - this.size * 20) {
-                    this.vy = -this.vy * (0.8 + Math.random() * 0.2);
-                    this.y = Math.max(0, Math.min(this.y, window.innerHeight - this.size * 20));
-                }
-
-                // Collision with other emojis
-                emojiArray.forEach(other => {
-                    if (other !== this) {
-                        const dx = other.x - this.x;
-                        const dy = other.y - this.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        const minDist = (this.size + other.size) * 15;
-
-                        if (distance < minDist) {
-                            // Bounce off each other
-                            const angle = Math.atan2(dy, dx);
-                            const tx = this.vx;
-                            const ty = this.vy;
-                            this.vx = other.vx * 0.8;
-                            this.vy = other.vy * 0.8;
-                            other.vx = tx * 0.8;
-                            other.vy = ty * 0.8;
-                            // Push apart slightly
-                            this.x -= Math.cos(angle) * 5;
-                            this.y -= Math.sin(angle) * 5;
-                            other.x += Math.cos(angle) * 5;
-                            other.y += Math.sin(angle) * 5;
-                        }
-                    }
-                });
-
-                // Apply position
-                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
-            }
+        const background = document.getElementById('background');
+        
+        for (let i = 0; i < 50; i++) {
+            const span = document.createElement('span');            
+            span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            span.style.left = `${Math.random() * 100}vw`;
+            span.style.animationDuration = `${5 + Math.random() * 10}s`; // Random speed between 5s and 15s
+            span.style.fontSize = `${1.5 + Math.random() * 2}em`; // Random size between 1.5em and 3.5em
+            background.appendChild(span);
         }
-
-        // Initialize emojis
-        for (let i = 0; i < emojiCount; i++) {
-            emojiArray.push(new Emoji());
-        }
-
-        // Animation loop
-        function animate() {
-            emojiArray.forEach(emoji => emoji.update());
-            requestAnimationFrame(animate);
-        }
-
-        window.onload = () => {
-            animate(); // Start the badass animation
-        };
     </script>
 </body>
 </html>
