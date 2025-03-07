@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HostedOp | Hosted Bitcoin Mining & AI Investment</title>
+    <title>HostedOp | Hosted Crypto Mining & AI Investment</title>
     <link rel="icon" href="https://blastlabs.net/favicon.ico" type="image/x-icon">
     <style>
         body, html {
@@ -12,11 +12,12 @@
             font-family: Arial, sans-serif;
             background: #000;
             color: #fff;
-            overflow: hidden;
+            height: 100%;
+            overflow-y: auto;
         }
         .slide-container {
             width: 100vw;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -73,10 +74,11 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
             z-index: -1;
+            pointer-events: none;
         }
         .emoji {
             position: absolute;
@@ -84,22 +86,50 @@
             animation: float 10s linear infinite, fade 6s ease-in-out infinite;
         }
         @keyframes float {
-            from {
+            0% {
                 transform: translateY(100vh);
                 opacity: 1;
             }
-            to {
+            100% {
                 transform: translateY(-10vh);
                 opacity: 0.5;
             }
         }
         @keyframes fade {
-            0%, 100% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .form-container {
+            width: 100%;
+            padding: 20px;
+            background: rgba(34, 34, 34, 0.9);
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-container input {
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 5px;
+            border: none;
+        }
+        .form-container button {
+            background: #0284c7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background: #026ba7;
         }
     </style>
 </head>
@@ -108,7 +138,7 @@
     <div class="slide-container" id="slides">
         <div class="slide active">
             <h1>Welcome to HostedOp</h1>
-            <p>Powering Bitcoin Mining, Cloud, and AI with Hosted Solutions.</p>
+            <p>Powering Crypto Mining, Cloud, and AI with Hosted Solutions.</p>
         </div>
         <div class="slide">
             <h2>Ethereum Classic Mining Stats</h2>
@@ -116,18 +146,18 @@
             <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a>
         </div>
         <div class="slide">
-            <h2>Unmineable LTC Hashrate Rental</h2>
-            <p>Explore how we leverage Unmineable.com to mine multiple coins and cash out in Litecoin. Flexible, efficient, and built for profit—see the numbers that matter.</p>
+            <h2>Unmineable Hashrate Rentals</h2>
+            <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results.</p>
             <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a>
         </div>
-        <div class="form-container">
-            <h3>Contact Us</h3>
-            <form action="https://blastlabs.net/hostedop" method="POST">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+    </div>
+    <div class="form-container">
+        <h3>Contact Us</h3>
+        <form action="https://blastlabs.net/hostedop" method="POST">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <button type="submit">Submit</button>
+        </form>
     </div>
     <div class="nav-btn left" onclick="prevSlide()">❮</div>
     <div class="nav-btn right" onclick="nextSlide()">❯</div>
@@ -166,7 +196,7 @@
             span.style.left = `${Math.random() * 100}vw`;
             span.style.animationDuration = `${5 + Math.random() * 10}s`;
             span.style.fontSize = `${1.5 + Math.random() * 2}em`;
-            span.style.color = '#f7931a'; // Bright Bitcoin Orange
+            span.style.color = '#f7931a';
             span.classList.add('emoji');
             
             emojiContainer.appendChild(span);
