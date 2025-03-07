@@ -83,6 +83,7 @@
         .emoji {
             position: absolute;
             font-size: 2em;
+            will-change: transform, opacity; /* Optimize animation */
             animation: float 10s linear infinite, fade 6s ease-in-out infinite;
         }
         @keyframes float {
@@ -111,14 +112,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
-        .form-container input {
+        .form-container input, .form-container textarea, .form-container select {
             padding: 10px;
             width: 80%;
-            max-width: 300px;
+            max-width: 400px;
             border-radius: 5px;
             border: none;
+            background: #fff;
+            color: #000;
         }
         .form-container button {
             background: #0284c7;
@@ -130,6 +133,12 @@
         }
         .form-container button:hover {
             background: #026ba7;
+        }
+        .form-container label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -152,10 +161,25 @@
         </div>
     </div>
     <div class="form-container">
-        <h3>Contact Us</h3>
+        <h3>Contact Us - Accredited Investors Only</h3>
         <form action="https://blastlabs.net/hostedop" method="POST">
-            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="text" name="full_name" placeholder="Full Name" required>
             <input type="email" name="email" placeholder="Email Address" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="number" name="net_worth" placeholder="Net Worth (USD)" required>
+            <input type="number" name="annual_income" placeholder="Annual Income (USD)" required>
+            <textarea name="investment_experience" placeholder="Describe your investment experience (e.g., years, asset types)" rows="4" required></textarea>
+            <select name="accreditation_status" required>
+                <option value="" disabled selected>Select Accreditation Status</option>
+                <option value="net_worth">Net Worth > $1M (excl. primary residence)</option>
+                <option value="income_individual">Income > $200K (last 2 years)</option>
+                <option value="income_joint">Joint Income > $300K (last 2 years)</option>
+                <option value="professional">Professional Credential (e.g., CFA, Series 7)</option>
+            </select>
+            <label>
+                <input type="checkbox" name="accreditation_acknowledgment" required>
+                I certify I am an accredited investor per SEC Regulation D.
+            </label>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -186,21 +210,24 @@
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
         });
-        
-        const emojis = ['₿', '☁️', '🤖', '🦾'];
-        const emojiContainer = document.getElementById('emoji-container');
-        
-        for (let i = 0; i < 50; i++) {
-            const span = document.createElement('span');            
-            span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            span.style.left = `${Math.random() * 100}vw`;
-            span.style.animationDuration = `${5 + Math.random() * 10}s`;
-            span.style.fontSize = `${1.5 + Math.random() * 2}em`;
-            span.style.color = '#f7931a';
-            span.classList.add('emoji');
+
+        // Emoji animation setup
+        window.onload = function() {
+            const emojis = ['₿', '☁️', '🤖', '🦾'];
+            const emojiContainer = document.getElementById('emoji-container');
             
-            emojiContainer.appendChild(span);
-        }
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');            
+                span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                span.style.left = `${Math.random() * 100}vw`;
+                span.style.animationDuration = `${5 + Math.random() * 10}s`;
+                span.style.fontSize = `${1.5 + Math.random() * 2}em`;
+                span.style.color = '#f7931a';
+                span.classList.add('emoji');
+                
+                emojiContainer.appendChild(span);
+            }
+        };
     </script>
 </body>
 </html>
