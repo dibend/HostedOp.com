@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: #000;
+            background: repeating-radial-gradient(circle at 50% 50%, #f7931a 0%, #000 20%);
             color: #fff;
             overflow-x: hidden;
         }
@@ -83,16 +83,48 @@
             to { opacity: 1; }
         }
 
-        /* Main Content */
-        .content {
-            text-align: center;
-            padding: 50px 20px;
-            animation: slideUp 2s;
+        /* Slide Deck */
+        .slide-container {
+            width: 100vw;
+            height: 70vh; /* Reduced to fit form below */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
         }
 
-        .content h2 {
+        .slide {
+            position: absolute;
+            width: 80%;
+            max-width: 800px;
+            background: rgba(34, 34, 34, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .slide h2 {
             font-size: 2em;
             margin-bottom: 10px;
+        }
+
+        .slide p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .cta {
@@ -103,8 +135,8 @@
             border-radius: 5px;
             font-size: 1.2em;
             cursor: pointer;
-            margin-top: 20px;
             transition: transform 0.3s ease;
+            text-decoration: none;
         }
 
         .cta:hover {
@@ -112,10 +144,20 @@
             transform: scale(1.1);
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 10;
         }
+
+        .left { left: 20px; }
+        .right { right: 20px; }
 
         /* Floating Form */
         .form-container {
@@ -129,7 +171,7 @@
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 350px;
+            width: 400px;
             max-width: 90%;
             z-index: 20;
             animation: slideForm 0.6s ease-out forwards;
@@ -139,7 +181,7 @@
             margin-bottom: 15px;
         }
 
-        .form-container input, .form-container select, .form-container button {
+        .form-container input, .form-container textarea, .form-container button {
             width: 80%;
             margin: 10px 0;
             padding: 10px;
@@ -148,9 +190,14 @@
             border-radius: 5px;
         }
 
-        .form-container input, .form-container select {
+        .form-container input, .form-container textarea {
             background: #333;
             color: #fff;
+        }
+
+        .form-container textarea {
+            height: 100px;
+            resize: vertical;
         }
 
         .form-container button {
@@ -185,7 +232,7 @@
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 20px;
             text-align: center;
             background: #222;
             color: #fff;
@@ -201,43 +248,71 @@
         <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
     </header>
 
-    <div class="content">
-        <h2>Welcome to HostedOp</h2>
-        <button class="cta" onclick="showForm()">Get Started Now</button>
+    <div class="slide-container" id="slides">
+        <div class="slide active">
+            <h2>Welcome to HostedOp</h2>
+            <p>Explore cutting-edge crypto mining and AI investment opportunities with our hosted solutions.</p>
+            <button class="cta" onclick="showForm()">Get Started Now</button>
+        </div>
+        <div class="slide">
+            <h2>Ethereum Classic Mining Stats</h2>
+            <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action.</p>
+            <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a>
+        </div>
+        <div class="slide">
+            <h2>Unmineable Hashrate Rentals</h2>
+            <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results.</p>
+            <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a>
+        </div>
     </div>
 
+    <div class="nav-btn left" onclick="prevSlide()">❮</div>
+    <div class="nav-btn right" onclick="nextSlide()">❯</div>
+
     <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
-        <h3>Accredited Investor Screening</h3>
+        <h3>Accredited Investor Inquiry</h3>
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email Address" required>
-        <label>Are you an accredited investor?</label>
-        <select name="accredited" required>
-            <option value="">Select</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
-        <label>Annual Income</label>
-        <select name="income" required>
-            <option value="">Select</option>
-            <option value=">200k">Over $200,000</option>
-            <option value="<200k">Under $200,000</option>
-        </select>
-        <label>Net Worth (excluding primary residence)</label>
-        <select name="net_worth" required>
-            <option value="">Select</option>
-            <option value=">1M">Over $1,000,000</option>
-            <option value="<1M">Under $1,000,000</option>
-        </select>
+        <textarea name="investor_status" placeholder="Describe your status as an accredited investor (e.g., net worth, income, credentials)" required></textarea>
+        <textarea name="financial_background" placeholder="Tell us about your financial background and investment experience" required></textarea>
+        <textarea name="investment_goals" placeholder="What are your investment goals with HostedOp?" required></textarea>
         <button type="submit">Submit</button>
     </form>
 
-    <a href="https://wa.me/19085776850" class="whatsapp-btn">Chat on WhatsApp</a>
+    <a href="https://wa.me/1234567890" class="whatsapp-btn">Chat on WhatsApp</a>
 
     <footer>
         <p>© 2025 HostedOp. All rights reserved.</p>
     </footer>
 
     <script>
+        // Slide Deck Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Form Toggle
         function showForm() {
             document.getElementById('form-container').style.display = 'block';
         }
@@ -250,8 +325,8 @@
             const span = document.createElement('span');            
             span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             span.style.left = `${Math.random() * 100}vw`;
-            span.style.animationDuration = `${5 + Math.random() * 10}s`; // Random speed between 5s and 15s
-            span.style.fontSize = `${1.5 + Math.random() * 2}em`; // Random size between 1.5em and 3.5em
+            span.style.animationDuration = `${5 + Math.random() * 10}s`;
+            span.style.fontSize = `${1.5 + Math.random() * 2}em`;
             background.appendChild(span);
         }
     </script>
