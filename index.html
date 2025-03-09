@@ -286,6 +286,25 @@
             background: #026ba7;
             transform: scale(1.1);
         }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f7931a;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #d6760f;
+        }
     </style>
 </head>
 <body>
@@ -337,6 +356,7 @@
 
     <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
         <h3>Accredited Investor Inquiry</h3>
+        <button type="button" class="close-btn" onclick="hideForm()">X</button>
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email Address" required>
         <textarea name="investor_status" placeholder="Describe your status as an accredited investor (e.g., net worth, income, credentials)" required></textarea>
@@ -378,10 +398,31 @@
             if (e.key === 'ArrowLeft') prevSlide();
         });
 
-        // Form Toggle
+        // Form Toggle Functions
         function showForm() {
             document.getElementById('form-container').style.display = 'block';
         }
+
+        function hideForm() {
+            document.getElementById('form-container').style.display = 'none';
+        }
+
+        // Auto-show form when last slide becomes active
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.classList.contains('active')) {
+                    if (mutation.target === slides[slides.length - 1]) {
+                        showForm();
+                    } else {
+                        hideForm();
+                    }
+                }
+            });
+        });
+
+        slides.forEach((slide) => {
+            observer.observe(slide, { attributes: true, attributeFilter: ['class'] });
+        });
 
         // Emoji Background Setup
         const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
