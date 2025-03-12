@@ -337,67 +337,80 @@
   </footer>
 
   <script>
+    // Slide Deck Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
-    
+
     function showSlide(index) {
-      slides.forEach((slide) => {
-        slide.style.display = 'none';
-        slide.classList.remove('active');
-      });
-      slides[index].style.display = 'flex';
-      slides[index].classList.add('active');
-      
-      // Automatically show the form on the last slide; hide on others
-      if (index === slides.length - 1) {
-        showForm();
-      } else {
-        hideForm();
-      }
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? 'flex' : 'none';
+            slide.classList.toggle('active', i === index);
+        });
     }
-    
+
     function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
     }
-    
+
     function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
     }
-    
+
+    // Show the first slide on page load
+    showSlide(currentSlide);
+
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') nextSlide();
-      if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
     });
-    
+
+    // Form Toggle Functions
     function showForm() {
-      const form = document.getElementById('form-container');
-      form.style.display = 'block';
-      form.style.transform = 'translate(-50%, -50%) scale(1)';
+        document.getElementById('form-container').style.display = 'block';
     }
-    
+
     function hideForm() {
-      const form = document.getElementById('form-container');
-      form.style.display = 'none';
-      form.style.transform = 'translate(-50%, -50%) scale(0)';
+        document.getElementById('form-container').style.display = 'none';
     }
-    
-    // Initialize the first slide on page load
-    document.addEventListener('DOMContentLoaded', function() { showSlide(currentSlide); });
-    
+
+    // Auto-show form on the last slide
+    function checkLastSlide() {
+        if (currentSlide === slides.length - 1) {
+            showForm();
+        }
+    }
+
+    // Call checkLastSlide whenever the slide changes
+    function slideChanged() {
+        showSlide(currentSlide); //Ensure a slide is showing.
+        checkLastSlide();
+
+    }
+    // Use the optimized slide change functions
+     function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        slideChanged();
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        slideChanged();
+    }
     // Emoji Background Setup
     const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
     const background = document.getElementById('background');
-    
+
     for (let i = 0; i < 50; i++) {
-      const span = document.createElement('span');
-      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      span.style.left = `${Math.random() * 100}vw`;
-      span.style.animationDuration = `${5 + Math.random() * 10}s`;
-      span.style.fontSize = `${1.5 + Math.random() * 2}em`;
-      background.appendChild(span);
+        const span = document.createElement('span');
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = `${Math.random() * 100}vw`;
+        span.style.animationDuration = `${5 + Math.random() * 10}s`;
+        span.style.fontSize = `${1.5 + Math.random() * 2}em`;
+        background.appendChild(span);
     }
-  </script>
+</script>
 </body>
 </html>
