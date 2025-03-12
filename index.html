@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+ NEED TO DO MORE RESEARCH<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "qm18kyhu4r");
-</script>
+    </script>
     <style>
         /* General Reset */
         body, html {
@@ -92,7 +92,7 @@
         /* Slide Deck */
         .slide-container {
             width: 100vw;
-            height: 70vh; /* Reduced to fit form below */
+            height: 90vh; /* Adjusted to fit mining-slide */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -246,6 +246,7 @@
             padding: 10px 0;
             z-index: 5; /* Above emojis */
         }
+
         .form-container-inline {
             background: #222;
             padding: 20px;
@@ -254,9 +255,9 @@
             text-align: center;
             width: 100%;
             max-width: 400px;
-            max-height: 80%; /* Caps form height within slide */
-            overflow-y: auto; /* Enables vertical scrolling */
-            overflow-x: hidden; /* Prevents horizontal overflow */
+            max-height: 80%;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .form-container-inline h3 {
@@ -295,16 +296,16 @@
 
         .close-btn {
             position: absolute;
-            top: 5px; /* Moved up slightly */
-            right: 5px; /* Moved right slightly */
+            top: 5px;
+            right: 5px;
             background: #f7931a;
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 20px; /* Smaller size */
-            height: 20px; /* Smaller size */
-            font-size: 0.9em; /* Smaller font */
-            line-height: 20px; /* Centers "X" vertically */
+            width: 20px;
+            height: 20px;
+            font-size: 0.9em;
+            line-height: 20px;
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -313,16 +314,58 @@
             background: #d6760f;
         }
 
+        /* Mining Slide and Iframe */
         .slide.mining-slide {
             width: 90vw;
-            height: 90%;
+            height: 90vh;
             max-width: none;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .slide.mining-slide iframe {
+            width: 100%;
             height: 85%;
             max-height: 1000px;
             min-height: 500px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        /* Mobile Adjustments (up to 768px) */
+        @media (max-width: 768px) {
+            .slide.mining-slide {
+                width: 95vw;
+                height: auto;
+                min-height: 70vh; /* Ensures room for h2, p, iframe */
+                padding: 15px 5px 5px 5px; /* More top padding for h2 */
+            }
+            .slide.mining-slide h2 {
+                font-size: 1.5em;
+                margin-bottom: 5px; /* Tighten spacing */
+            }
+            .slide.mining-slide p {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            .slide.mining-slide iframe {
+                height: 55vh; /* Reduced to give h2/p space */
+                min-height: 300px;
+                max-height: none;
+            }
+            .slide-container {
+                height: auto;
+                padding: 10px 0;
+            }
+        }
+
+        /* Tablet Adjustments (769px-1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .slide.mining-slide iframe {
+                height: 75%;
+            }
         }
     </style>
 </head>
