@@ -384,9 +384,7 @@
     }
     
     // Initialize the first slide on page load
-    window.onload = function() {
-      showSlide(currentSlide);
-    };
+    document.addEventListener('DOMContentLoaded', function() { showSlide(currentSlide); });
     
     // Emoji Background Setup
     const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
