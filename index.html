@@ -166,7 +166,7 @@
         .left { left: 20px; }
         .right { right: 20px; }
 
-        /* Floating Form */
+       /* Floating Form */
         .form-container {
             display: none;
             position: fixed;
@@ -182,6 +182,8 @@
             max-width: 90%;
             z-index: 20;
             animation: slideForm 0.6s ease-out forwards;
+            overflow-y: auto; /* Add scrollability */
+            max-height: 80vh;  /*Limit Height, allow scroll*/
         }
 
         .form-container h3 {
@@ -218,6 +220,27 @@
             to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
+        /*Close button*/
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #f7931a;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.9em;
+            line-height: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #d6760f;
+        }
+
         /* WhatsApp Button */
         .whatsapp-btn {
             position: fixed;
@@ -245,73 +268,6 @@
             color: #fff;
             padding: 10px 0;
             z-index: 5; /* Above emojis */
-        }
-
-        .form-container-inline {
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-            max-height: 80%;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .form-container-inline h3 {
-            margin-bottom: 15px;
-        }
-
-        .form-container-inline input, .form-container-inline textarea, .form-container-inline button {
-            width: 80%;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .form-container-inline input, .form-container-inline textarea {
-            background: #333;
-            color: #fff;
-        }
-
-        .form-container-inline textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .form-container-inline button {
-            background: #0284c7;
-            color: white;
-            cursor: pointer;
-        }
-
-        .form-container-inline button:hover {
-            background: #026ba7;
-            transform: scale(1.1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #f7931a;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.9em;
-            line-height: 20px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .close-btn:hover {
-            background: #d6760f;
         }
 
         /* Mining Slide and Iframe */
@@ -420,7 +376,7 @@
         </div>
         <div class="slide">
             <h2>Accredited Investors Only</h2>
-        <p>This opportunity is exclusively for accredited investors.  Please provide details about your accreditation in the form.</p>
+            <p>This opportunity is exclusively for accredited investors.  Please provide details about your accreditation in the form.</p>
         </div>
     </div>
 
@@ -429,8 +385,7 @@
 
     <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
         <h3>Accredited Investor Inquiry</h3>
-        <button type="button" class="close-btn" onclick="hideForm()">X</button>
-        <input type="text" name="name" placeholder="Full Name" required>
+        <button type="button" class="close-btn" onclick="hideForm()">X</button> <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email Address" required>
         <textarea name="investor_status" placeholder="Describe your status as an accredited investor (e.g., net worth, income, credentials)" required></textarea>
         <textarea name="financial_background" placeholder="Tell us about your financial background and investment experience" required></textarea>
@@ -502,7 +457,7 @@
         const background = document.getElementById('background');
         
         for (let i = 0; i < 50; i++) {
-            const span = document.createElement('span');            
+            const span = document.createElement('span');
             span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             span.style.left = `${Math.random() * 100}vw`;
             span.style.animationDuration = `${5 + Math.random() * 10}s`;
