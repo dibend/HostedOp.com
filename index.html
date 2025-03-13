@@ -92,16 +92,14 @@
             visibility: hidden;
         }
 
-        .active {
-            display: flex;
-            opacity: 1;
-            z-index: 4;
-            visibility: visible;
-            transform: translateX(-50%) scale(1);
+        .invisible {
+            visibility: hidden;
+            opacity: 0;
         }
 
-        .slide:not(.active) {
-            transform: translateX(-50%) scale(0.9);
+        .slide:not(.invisible) {
+            visibility: visible;
+            opacity: 1;
         }
 
         .slide h2 { font-size: 2em; margin-bottom: 10px; }
@@ -303,32 +301,32 @@
 
     <div class="main-content">
         <div class="slide-container" id="slides">
-            <div class="slide active">
+            <div class="slide">
                 <h1>HostedOp</h1>
                 <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
                 <h2>Welcome to HostedOp</h2>
                 <p>Explore cutting-edge crypto mining and AI investment opportunities with our hosted solutions.</p>
                 <button class="cta" onclick="showForm()">Get Started Now</button>
             </div>
-            <div class="slide">
+            <div class="slide invisible">
                 <h2>Ethereum Classic Mining Stats</h2>
-                <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action.</p>
+                <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action. [...]</p>
                 <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a>
             </div>
-            <div class="slide">
+            <div class="slide invisible">
                 <h2>Unmineable Hashrate Rentals</h2>
                 <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results.</p>
                 <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a>
             </div>
-            <div class="slide mining-slide">
+            <div class="slide invisible mining-slide">
                 <h2>Mining Profitability</h2>
                 <p>The mining calculator below assumes 10¢/kWh. Plug in our 9¢ rate and see the profitability boost!</p>
                 <iframe src="https://hashrate.no/asics" width="100%" frameborder="0" style="border-radius: 5px;"></iframe>
             </div>
-            <div class="slide">
+            <div class="slide invisible">
                 <h2>Accredited Investors Only</h2>
-                <p>This opportunity is exclusively for accredited investors.  Please provide details about your accreditation in the form.</p>
-                <button class="reopen-form-btn" onclick="showForm()">Ready to Invest?  Reopen Form</button>
+                <p>This opportunity is exclusively for accredited investors. Please provide details about your accreditation in the form.</p>
+                <button class="reopen-form-btn" onclick="showForm()">Ready to Invest? Reopen Form</button>
             </div>
             <div class="nav-btn left" onclick="prevSlide()">❮</div>
             <div class="nav-btn right" onclick="nextSlide()">❯</div>
@@ -360,12 +358,13 @@
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 if (i === index) {
-                    slide.classList.add('active');
+                    slide.classList.remove('invisible');
                 } else {
-                    slide.classList.remove('active');
+                    slide.classList.add('invisible');
                 }
             });
         }
+
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
