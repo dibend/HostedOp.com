@@ -52,26 +52,6 @@
             50% { opacity: 1; }
         }
 
-        /* Header */
-        header {
-            background: #222;
-            color: #fff;
-            padding: 20px 10px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            animation: fadeIn 2s;
-        }
-
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { margin: 5px 0 0; font-size: 1.2em; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         /* Main Content Area */
         .main-content {
             position: relative;
@@ -92,7 +72,6 @@
             overflow: hidden;
         }
 
-        /* --- CRITICAL CHANGE:  Remove display: none; --- */
         .slide {
             width: 80%;
             max-width: 800px;
@@ -107,25 +86,23 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            transition: opacity 0.5s, transform 0.5s; /* Add transform to transition */
+            transition: opacity 0.5s, transform 0.5s;
             z-index: 3;
-            opacity: 0;          /* Initially hidden, but in the layout */
-            visibility: hidden;  /*  Hide using visibility */
+            opacity: 0;
+            visibility: hidden;
         }
 
-        /* --- CRITICAL CHANGE:  Use transform for inactive slides --- */
         .active {
             display: flex;
             opacity: 1;
             z-index: 4;
-            visibility: visible; /* Make active slide visible */
-            transform: translateX(-50%) scale(1);  /* Reset transform */
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
         }
 
         .slide:not(.active) {
-             transform: translateX(-50%) scale(0.9); /* Scale down inactive slides*/
+            transform: translateX(-50%) scale(0.9);
         }
-
 
         .slide h2 { font-size: 2em; margin-bottom: 10px; }
         .slide p { font-size: 1.2em; margin-bottom: 20px; text-align: center; }
@@ -144,7 +121,7 @@
 
         .cta:hover { background: #026ba7; transform: scale(1.1); }
 
-         .nav-btn {
+        .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -157,11 +134,10 @@
             color: white;
         }
 
-
         .left { left: 10px; }
         .right { right: 10px; }
 
-       /* Floating Form */
+        /* Floating Form */
         .form-container {
             display: none;
             position: fixed;
@@ -260,7 +236,6 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-
         }
 
         .slide.mining-slide iframe {
@@ -326,14 +301,11 @@
 <body>
     <div class="background" id="background"></div>
 
-    <header>
-        <h1>HostedOp</h1>
-        <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
-    </header>
-
     <div class="main-content">
         <div class="slide-container" id="slides">
             <div class="slide active">
+                <h1>HostedOp</h1>
+                <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
                 <h2>Welcome to HostedOp</h2>
                 <p>Explore cutting-edge crypto mining and AI investment opportunities with our hosted solutions.</p>
                 <button class="cta" onclick="showForm()">Get Started Now</button>
@@ -362,7 +334,6 @@
             <div class="nav-btn right" onclick="nextSlide()">❯</div>
         </div>
     </div>
-
 
     <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
         <h3>Accredited Investor Inquiry</h3>
@@ -430,6 +401,7 @@
                 showForm();
             }
         }
+
         // Emoji Background Setup
         const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
         const background = document.getElementById('background');
