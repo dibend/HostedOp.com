@@ -3,416 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HostedOp | Hosted Crypto Mining, Cloud & Artificial Intelligence Investment</title>
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qm18kyhu4r");
-    </script>
+    <title>HostedOp - Slide Deck</title>
     <style>
-        /* General Reset */
-        body, html {
+        body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: repeating-radial-gradient(circle at 50% 50%, #f7931a 0%, #000 20%);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Emoji Background */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .background span {
-            position: absolute;
-            font-size: 2em;
-            color: #f7931a;
-            font-weight: bold;
-            animation: float 10s linear infinite, fade 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            from { transform: translateY(100vh); opacity: 1; }
-            to { transform: translateY(-10vh); opacity: 0.5; }
-        }
-
-        @keyframes fade {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        /* Main Content Area */
-        .main-content {
-            position: relative;
-            min-height: 100vh;
-            padding-bottom: 60px;
-            box-sizing: border-box;
-            z-index: 2;
-        }
-
-        /* Slide Deck */
-        .slide-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .slide {
-            width: 80%;
-            max-width: 800px;
-            background: rgba(34, 34, 34, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
-            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            top: 0;
+            text-align: center;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .form-container {
+            position: fixed;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            transition: opacity 0.5s, transform 0.5s;
-            z-index: 3;
-            opacity: 0;
-            visibility: hidden;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
         }
-
-        .invisible {
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        .slide:not(.invisible) {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .slide h2 { font-size: 2em; margin-bottom: 10px; }
-        .slide p { font-size: 1.2em; margin-bottom: 20px; text-align: center; }
-
-        .cta {
-            background: #0284c7;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-        }
-
-        .cta:hover { background: #026ba7; transform: scale(1.1); }
 
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2em;
+            padding: 10px 20px;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 50%;
-            z-index: 5;
-            color: white;
+            z-index: 100;
         }
 
-        .left { left: 10px; }
-        .right { right: 10px; }
+        .left { left: 20px; }
+        .right { right: 20px; }
 
-        /* Floating Form */
-        .form-container {
-            display: none;
+        #emoji-background {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            width: 400px;
-            max-width: 90%;
-            z-index: 20;
-            animation: slideForm 0.6s ease-out forwards;
-            overflow-y: auto;
-            max-height: 80vh;
-        }
-
-        .form-container h3 { margin-bottom: 15px; }
-
-        .form-container input, .form-container textarea, .form-container button {
-            width: 80%;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .form-container input, .form-container textarea { background: #333; color: #fff; }
-        .form-container textarea { height: 100px; resize: vertical; }
-        .form-container button { background: #0284c7; color: white; cursor: pointer; }
-
-        @keyframes slideForm {
-            from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        /*Close button*/
-        .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #f7931a;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.9em;
-            line-height: 20px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .close-btn:hover { background: #d6760f; }
-
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            border-radius: 50px;
-            padding: 10px 15px;
-            font-size: 1.2em;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-
-        .whatsapp-btn:hover { background: #20c056; }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            background: #222;
-            color: #fff;
-            padding: 10px 0;
-            z-index: 2;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
             left: 0;
+            z-index: -1;
         }
 
-        /* Mining Slide and Iframe */
-        .slide.mining-slide {
-            width: 90vw;
-            height: auto;
-            max-width: none;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .slide.mining-slide iframe {
-            width: 100%;
-            height: 500px;
-            max-height: 1000px;
-            min-height: 300px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-
-        /* Mobile Adjustments (up to 768px) */
-        @media (max-width: 768px) {
-            .slide.mining-slide {
-                width: 95vw;
-                min-height: auto;
-                padding: 15px 5px 5px 5px;
-            }
-            .slide.mining-slide h2 { font-size: 1.5em; margin-bottom: 5px; }
-            .slide.mining-slide p { font-size: 1em; margin-bottom: 10px; }
-            .slide.mining-slide iframe {
-                height: 300px;
-            }
-            .nav-btn {
-              font-size: 1.5em;
-              padding: 6px;
-            }
-            .slide-container {
-                padding-top: 0px;
-            }
-            .slide {
-                padding: 10px;
-            }
-            /* Reopen form button */
-            .reopen-form-btn {
-               margin-top: 15px;
-            }
-        }
-
-        /* Tablet Adjustments (769px-1024px) */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .slide.mining-slide iframe { height: 400px; }
-        }
-
-        /* Button to Reopen Form */
-        .reopen-form-btn {
-            background-color: #f7931a;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .reopen-form-btn:hover {
-            background-color: #d6760f;
+        .emoji {
+            user-select: none;
         }
     </style>
 </head>
 <body>
-    <div class="background" id="background"></div>
-
-    <div class="main-content">
-        <div class="slide-container" id="slides">
-            <div class="slide">
-                <h1>HostedOp</h1>
-                <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
-                <h2>Welcome to HostedOp</h2>
-                <p>Explore cutting-edge crypto mining and AI investment opportunities with our hosted solutions.</p>
-                <button class="cta" onclick="showForm()">Get Started Now</button>
-            </div>
-            <div class="slide invisible">
-                <h2>Ethereum Classic Mining Stats</h2>
-                <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action. [...]</p>
-                <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a>
-            </div>
-            <div class="slide invisible">
-                <h2>Unmineable Hashrate Rentals</h2>
-                <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results.</p>
-                <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a>
-            </div>
-            <div class="slide invisible mining-slide">
-                <h2>Mining Profitability</h2>
-                <p>The mining calculator below assumes 10¢/kWh. Plug in our 9¢ rate and see the profitability boost!</p>
-                <iframe src="https://hashrate.no/asics" width="100%" frameborder="0" style="border-radius: 5px;"></iframe>
-            </div>
-            <div class="slide invisible">
-                <h2>Accredited Investors Only</h2>
-                <p>This opportunity is exclusively for accredited investors. Please provide details about your accreditation in the form.</p>
-                <button class="reopen-form-btn" onclick="showForm()">Ready to Invest? Reopen Form</button>
-            </div>
-            <div class="nav-btn left" onclick="prevSlide()">❮</div>
-            <div class="nav-btn right" onclick="nextSlide()">❯</div>
-        </div>
+    <div id="slides">
+        <!-- Your slides here -->
     </div>
 
-    <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
-        <h3>Accredited Investor Inquiry</h3>
-        <button type="button" class="close-btn" onclick="hideForm()">X</button>
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <textarea name="investor_status" placeholder="Describe your status as an accredited investor (e.g., net worth, income, credentials)" required></textarea>
-        <textarea name="financial_background" placeholder="Tell us about your financial background and investment experience" required></textarea>
-        <textarea name="investment_goals" placeholder="What are your investment goals with HostedOp?" required></textarea>
-        <button type="submit">Submit</button>
-    </form>
+    <nav role="navigation" aria-label="Slide Deck Navigation">
+        <button class="nav-btn left" aria-label="Previous Slide">←</button>
+        <button class="nav-btn right" aria-label="Next Slide">→</button>
+    </nav>
 
-    <a href="https://wa.me/+19085776850" class="whatsapp-btn">Chat on WhatsApp</a>
-
-    <footer>
-        <p>© 2025 HostedOp. All rights reserved.</p>
-    </footer>
+    <div id="emoji-background"></div>
 
     <script>
-        // Slide Deck Logic
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        // Your slide deck initialization code
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.remove('invisible');
-                } else {
-                    slide.classList.add('invisible');
-                }
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-            checkLastSlide(); // Check for form display
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-            checkLastSlide(); // Check for form display
-        }
-
-        // Show the first slide initially
-        showSlide(currentSlide);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
+        // Form handling
+        document.querySelector('.form-container').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form validation and submission logic here
+            console.log('Form submitted');
         });
 
-        // Form Toggle Functions
-        function showForm() {
-            document.getElementById('form-container').style.display = 'block';
-        }
+        // Emoji background generation
+        function generateBackground() {
+            const emojis = ['🌞', 'PointCloud', '🚀', '💡', '🌱'];
+            const container = document.getElementById('emoji-background');
 
-        function hideForm() {
-            document.getElementById('form-container').style.display = 'none';
-        }
+            for (let i = 0; i < 50; i++) {
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                const element = document.createElement('div');
+                element.className = 'emoji';
+                element.textContent = emoji;
+                
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = Math.random() * 30 + 20 + 'px';
 
-        // Auto-show form on the last slide
-        function checkLastSlide() {
-            if (currentSlide === slides.length - 1) {
-                showForm();
+                container.appendChild(element);
             }
         }
 
-        // Emoji Background Setup
-        const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
-        const background = document.getElementById('background');
+        // Initialize background
+        generateBackground();
 
-        for (let i = 0; i < 50; i++) {
-            const span = document.createElement('span');
-            span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            span.style.left = `${Math.random() * 100}vw`;
-            span.style.animationDuration = `${5 + Math.random() * 10}s`;
-            span.style.fontSize = `${1.5 + Math.random() * 2}em`;
-            background.appendChild(span);
+        // Animation loop
+        function animateElements() {
+            const elements = document.querySelectorAll('.emoji');
+            elements.forEach(element => {
+                element.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5}px)`;
+            });
+            
+            setTimeout(animateElements, 50);
         }
+
+        // Start animation
+        animateElements();
     </script>
 </body>
 </html>
