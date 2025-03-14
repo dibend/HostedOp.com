@@ -132,17 +132,6 @@
             z-index: 10;
         }
         .whatsapp-btn:hover { background: #20c056; }
-        footer {
-            text-align: center;
-            background: #222;
-            color: #fff;
-            padding: 10px 0;
-            z-index: 2;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
     </style>
 </head>
 <body>
@@ -170,8 +159,14 @@
         </div>
         <div class="slide">
             <h2>Accredited Investors Only</h2>
-            <p>This opportunity is exclusively for accredited investors. Please provide details about your accreditation in the form.</p>
-            <button class="cta" onclick="showForm()">Ready to Invest? Reopen Form</button>
+            <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="investor_status" placeholder="Describe your status as an accredited investor (e.g., net worth, income, credentials)" required></textarea>
+                <textarea name="financial_background" placeholder="Tell us about your financial background and investment experience" required></textarea>
+                <textarea name="investment_goals" placeholder="What are your investment goals with HostedOp?" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </div>
     <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
@@ -185,9 +180,6 @@
         <button type="submit">Submit</button>
     </form>
     <a href="https://wa.me/+19085776850" class="whatsapp-btn">Chat on WhatsApp</a>
-    <footer>
-        <p>© 2025 HostedOp. All rights reserved.</p>
-    </footer>
     <script>
         function showForm() {
             document.getElementById('form-container').style.display = 'block';
