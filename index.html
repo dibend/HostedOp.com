@@ -43,14 +43,6 @@
             padding-bottom: 60px;
             z-index: 2;
         }
-        .slide-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
         .slide {
             width: 80%;
             max-width: 800px;
@@ -58,17 +50,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: opacity 0.5s, transform 0.5s;
-            z-index: 3;
-            opacity: 0;
-            visibility: hidden;
-        }
-        .slide.active {
-            visibility: visible;
+            margin: 20px auto;
             opacity: 1;
         }
         .slide h2 { font-size: 2em; margin-bottom: 10px; }
@@ -85,20 +67,6 @@
             text-decoration: none;
         }
         .cta:hover { background: #026ba7; transform: scale(1.1); }
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2em;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 50%;
-            z-index: 5;
-            color: white;
-        }
-        .left { left: 10px; }
-        .right { right: 10px; }
         .form-container {
             display: none;
             position: fixed;
@@ -180,34 +148,30 @@
 <body>
     <div class="background" id="background"></div>
     <div class="main-content">
-        <div class="slide-container" id="slides">
-            <div class="slide active">
-                <h1>HostedOp</h1>
-                <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
-                <h2>Welcome to HostedOp</h2>
-                <p>Explore cutting-edge crypto mining and AI investment opportunities with our hosted solutions.</p>
-                <button class="cta" onclick="showForm()">Get Started Now</button>
-            </div>
-            <div class="slide">
-                <h2>Ethereum Classic Mining Stats</h2>
-                <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action. <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a></p>
-            </div>
-            <div class="slide">
-                <h2>Unmineable Hashrate Rentals</h2>
-                <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results. <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a></p>
-            </div>
-            <div class="slide mining-slide">
-                <h2>Mining Profitability</h2>
-                <p>The mining calculator below assumes 10¢/kWh. Plug in our 9¢ rate and see the profitability boost!</p>
-                <iframe src="https://hashrate.no/asics" width="100%" frameborder="0" style="border-radius: 5px;"></iframe>
-            </div>
-            <div class="slide">
-                <h2>Accredited Investors Only</h2>
-                <p>This opportunity is exclusively for accredited investors. Please provide details about your accreditation in the form.</p>
-                <button class="reopen-form-btn" onclick="showForm()">Ready to Invest? Reopen Form</button>
-            </div>
-            <div class="nav-btn left" onclick="prevSlide()">❮</div>
-            <div class="nav-btn right" onclick="nextSlide()">❯</div>
+        <div class="slide">
+            <h1>HostedOp</h1>
+            <p>Powering the future of Crypto Mining, Cloud, & Artificial Intelligence with Hosted Solutions at Strategic Data Center Partners.</p>
+            <h2>Welcome to HostedOp</h2>
+            <p>Explore cutting-edge crypto mining and AI investment opportunities with our hosted solutions.</p>
+            <button class="cta" onclick="showForm()">Get Started Now</button>
+        </div>
+        <div class="slide">
+            <h2>Ethereum Classic Mining Stats</h2>
+            <p>Dive into real-time insights from our Ethereum Classic mining operations on 2Miners. Track performance, monitor hashrates, and see the power of our hosted solutions in action. <a href="https://njweb.solutions/etc" target="_blank" class="cta">Check ETC Stats</a></p>
+        </div>
+        <div class="slide">
+            <h2>Unmineable Hashrate Rentals</h2>
+            <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results. <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a></p>
+        </div>
+        <div class="slide">
+            <h2>Mining Profitability</h2>
+            <p>The mining calculator below assumes 10¢/kWh. Plug in our 9¢ rate and see the profitability boost!</p>
+            <iframe src="https://hashrate.no/asics" width="100%" frameborder="0" style="border-radius: 5px;"></iframe>
+        </div>
+        <div class="slide">
+            <h2>Accredited Investors Only</h2>
+            <p>This opportunity is exclusively for accredited investors. Please provide details about your accreditation in the form.</p>
+            <button class="cta" onclick="showForm()">Ready to Invest? Reopen Form</button>
         </div>
     </div>
     <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
@@ -225,47 +189,12 @@
         <p>© 2025 HostedOp. All rights reserved.</p>
     </footer>
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) {
-                    slide.classList.add('active');
-                }
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-            checkLastSlide();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-            checkLastSlide();
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
-        });
-
         function showForm() {
             document.getElementById('form-container').style.display = 'block';
         }
 
         function hideForm() {
             document.getElementById('form-container').style.display = 'none';
-        }
-
-        function checkLastSlide() {
-            if (currentSlide === slides.length - 1) {
-                showForm();
-            }
         }
 
         const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
