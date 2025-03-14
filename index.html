@@ -132,6 +132,18 @@
             z-index: 10;
         }
         .whatsapp-btn:hover { background: #20c056; }
+        .iframe-slide {
+          width: 90%;
+          max-width: 1000px;
+          margin: 40px auto;
+          padding: 20px;
+        }
+        .iframe-slide iframe {
+          width: 100%;
+          height: 500px;
+          border-radius: 5px;
+          border: none;
+        }
     </style>
 </head>
 <body>
@@ -152,10 +164,10 @@
             <h2>Unmineable Hashrate Rentals</h2>
             <p>We rent hashrate on Unmineable.com, mining a variety of coins and earning payouts in Litecoin. Smart, scalable, and profitable—check out the results. <a href="https://njweb.solutions/unmineable-LTC" target="_blank" class="cta">View LTC Dashboard</a></p>
         </div>
-        <div class="slide">
+        <div class="iframe-slide">
             <h2>Mining Profitability</h2>
             <p>The mining calculator below assumes 10¢/kWh. Plug in our 9¢ rate and see the profitability boost!</p>
-            <iframe src="https://hashrate.no/asics" width="100%" frameborder="0" style="border-radius: 5px;"></iframe>
+            <iframe src="https://hashrate.no/asics" frameborder="0"></iframe>
         </div>
         <div class="slide">
             <h2>Accredited Investors Only</h2>
@@ -169,7 +181,7 @@
             </form>
         </div>
     </div>
-    <form class="form-container" id="form-container" action="https://blastlabs.net/hostedop" method="POST">
+    <form class="form-container" id="form-container-popup" action="https://blastlabs.net/hostedop" method="POST">
         <h3>Accredited Investor Inquiry</h3>
         <button type="button" class="close-btn" onclick="hideForm()">X</button>
         <input type="text" name="name" placeholder="Full Name" required>
@@ -182,11 +194,11 @@
     <a href="https://wa.me/+19085776850" class="whatsapp-btn">Chat on WhatsApp</a>
     <script>
         function showForm() {
-            document.getElementById('form-container').style.display = 'block';
+            document.getElementById('form-container-popup').style.display = 'block';
         }
 
         function hideForm() {
-            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('form-container-popup').style.display = 'none';
         }
 
         const emojis = ['₿', '☁️', '🤖', '🦾', '⚡', '💰', '🔗'];
