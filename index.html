@@ -22,24 +22,6 @@
       pointer-events: none;
     }
 
-    .background span {
-      position: absolute;
-      bottom: -2em;
-      font-size: 2em;
-      color: #f7931a;
-      animation: float 10s linear infinite, fade 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      from { transform: translateY(100vh); }
-      to { transform: translateY(-10vh); }
-    }
-
-    @keyframes fade {
-      0%,100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
     .main-content {
       position: relative;
       z-index: 2;
@@ -171,11 +153,24 @@
     function createEmoji() {
       const span = document.createElement("span");
       span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.position = 'absolute';
       span.style.left = Math.random() * 100 + "vw";
+      span.style.bottom = "-2em";
       span.style.fontSize = (1.5 + Math.random() * 2) + "em";
-      span.style.animation = "float 10s linear infinite, fade 6s ease-in-out infinite";
+      span.style.color = "#f7931a";
       background.appendChild(span);
-      span.addEventListener('animationend', () => span.remove());
+
+      let position = 0;
+      const speed = 1 + Math.random() * 1.5;
+      const interval = setInterval(() => {
+        position += speed;
+        span.style.bottom = position + "px";
+
+        if (position > window.innerHeight + 50) {
+          clearInterval(interval);
+          span.remove();
+        }
+      }, 30);
     }
 
     setInterval(createEmoji, 200);
