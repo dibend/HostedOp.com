@@ -24,7 +24,7 @@
 
     .background span {
       position: absolute;
-      bottom: 0;
+      bottom: -2em;
       font-size: 2em;
       color: #f7931a;
       animation: float 10s linear infinite, fade 6s ease-in-out infinite;
@@ -172,14 +172,13 @@
       const span = document.createElement("span");
       span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       span.style.left = Math.random() * 100 + "vw";
-      span.style.animationDelay = "0s";
-      span.style.animationDuration = (6 + Math.random() * 4) + "s, 6s";
       span.style.fontSize = (1.5 + Math.random() * 2) + "em";
+      span.style.animation = "float 10s linear infinite, fade 6s ease-in-out infinite";
       background.appendChild(span);
       span.addEventListener('animationend', () => span.remove());
     }
 
-    setInterval(createEmoji, 200); // Add new emoji every 200ms
+    setInterval(createEmoji, 200);
   </script>
 </body>
 </html>
