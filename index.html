@@ -1,326 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HostedOp | Hosted Crypto Mining, Cloud & AI Investment</title>
-<style>
-*, *::before, *::after {
-  box-sizing: border-box; /* Apply border-box globally */
-}
-body,html{
-  margin:0;padding:0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* Modern font stack */
-  background:radial-gradient(circle,#f7931a 0%,#000 20%);
-  color:#fff;overflow-x:hidden;
-}
-.background{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  overflow:hidden;z-index:1;pointer-events:none;
-}
-.background span{
-  position:absolute;font-size:2em;color:#f7931a;
-  animation:float 10s linear infinite,fade 6s ease-in-out infinite, spin 4s linear infinite;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HostedOp | Hosted Crypto Mining, Cloud & AI Investment</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(circle, #f7931a 0%, #000 20%);
+      color: #fff; overflow-x: hidden;
+    }
 
-/* Modified keyframes float for clarity: only handles Y-translation */
-@keyframes float{
-  from{transform:translateY(100vh)} /* Emoji starts from the bottom */
-  to{transform:translateY(-10vh)}   /* Emoji moves to above the top */
-}
-@keyframes fade{
-  0%,100%{opacity:.5}50%{opacity:1}
-}
-@keyframes spin{
-  0%{transform:rotate(0deg)}
-  100%{transform:rotate(360deg)}
-}
-.main-content{
-  position:relative;min-height:100vh;padding-bottom:80px; /* Increased padding for WhatsApp btn */
-  z-index:2;
-}
-.slide{ /* Combined .slide and .always-visible-form common styles */
-  width:80%;max-width:800px;
-  background:rgba(34,34,34,.85); /* Adjusted alpha for better blur visibility */
-  padding:25px; /* Increased padding */
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(255,165,0,.3);
-  margin:25px auto; /* Increased margin */
-  animation: slideIn 1s ease-out;
-  /* Added for blurred background effect */
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
-}
-@keyframes slideIn{
-  from{transform:translateX(-100%);opacity:0}
-  to{transform:translateX(0);opacity:1}
-}
-.slide h1, .slide h2{ /* Common styling for headers in slides */
-  font-size:2em; margin-top:0; margin-bottom:15px; animation: pulse 2s infinite;
-  color: #f7931a; /* Emphasize headers */
-}
-.slide p {
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.02)} /* Subtle pulse */
-  100%{transform:scale(1)}
-}
-.cta{
-  background:#0284c7;color:#fff;
-  padding:15px 30px;border:none;
-  border-radius:5px;font-size:1.2em;
-  font-weight: bold;
-  cursor:pointer;transition:background .3s ease, transform .3s ease;
-  text-decoration:none;display:inline-block;white-space:nowrap;
-  animation: bounce 2s infinite;
-  margin-top: 10px; /* Added margin for spacing */
-}
-@keyframes bounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)} /* Subtle bounce */
-}
-.cta:hover{
-  background:#026ba7;transform:scale(1.05) translateY(-3px); /* Combined hover effect */
-}
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-/* Popup Form Container - Initially Hidden */
-.form-container{
-  position:fixed;top:50%;left:50%;
-  /* transform:translate(-50%,-50%) scale(0); Combined in animation */
-  background:rgba(34,34,34,.95); /* Darker, slightly more opaque */
-  padding:25px;border-radius:10px;
-  box-shadow:0 6px 15px rgba(0,0,0,.4); /* Enhanced shadow */
-  text-align:center;width:450px;max-width:95%;z-index:20;
-  overflow-y:auto;max-height:90vh; /* Increased max-height */
-  display: none; /* Initially hidden */
-  /* Animation will be triggered by JS making it display:block */
-}
+    .background span {
+      position: absolute;
+      bottom: 0;
+      font-size: 2em;
+      color: #f7931a;
+      animation: float 10s linear infinite, fade 6s ease-in-out infinite;
+    }
 
-/* Animation for popup form appearance */
-.form-container.active { /* Use a class to trigger animation */
-    display: block;
-    animation:slideForm .5s ease-out forwards;
-}
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
 
-@keyframes slideForm{
-  from{transform:translate(-50%,-50%) scale(0.7);opacity:0}
-  to{transform:translate(-50%,-50%) scale(1);opacity:1}
-}
-.close-btn{
-  position:absolute;top:10px;right:10px;background:#f7931a;
-  color:#000; border:none;border-radius:50%;
-  width:30px;height:30px;font-size:1.1em;line-height:30px;cursor:pointer;
-  transition:background .3s ease, transform .3s ease;
-  font-weight: bold;
-}
-.close-btn:hover{background:#d6760f; transform: rotate(90deg);}
+    @keyframes fade {
+      0%,100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
 
-/* Common Form Field Styling (for both popup and inline forms) */
-.form-field {
-  margin-bottom: 18px; /* Increased spacing */
-  text-align: left;
-}
-.form-field label {
-  display: block;
-  margin-bottom: 6px;
-  color: #ddd; /* Lighter label color */
-  font-size: 0.95em;
-  font-weight: bold;
-}
-.form-field input[type="text"],
-.form-field input[type="email"],
-.form-field textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 5px;
-  border: 1px solid #555;
-  background-color: #3a3a3a;
-  color: #fff;
-  font-size: 1em;
-  transition: border-color .3s ease, box-shadow .3s ease;
-}
-.form-field input[type="text"]:focus,
-.form-field input[type="email"]:focus,
-.form-field textarea:focus {
-  border-color: #f7931a;
-  outline: none;
-  box-shadow: 0 0 8px rgba(247, 147, 26, 0.6);
-}
-.form-field textarea {
-  min-height: 100px; /* Increased min-height */
-  resize: vertical;
-}
+    .main-content {
+      position: relative;
+      z-index: 2;
+      padding-bottom: 80px;
+      min-height: 100vh;
+    }
 
-/* Common Submit Button Styling */
-.form-submit-button {
-  background: #f7931a;
-  color: #000;
-  padding: 14px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background .3s ease, transform .2s ease;
-  display: block;
-  width: 100%;
-  margin-top: 15px;
-}
-.form-submit-button:hover {
-  background: #d6760f;
-  transform: translateY(-2px);
-}
+    .slide {
+      width: 80%;
+      max-width: 800px;
+      background: rgba(34,34,34,0.85);
+      padding: 25px;
+      margin: 25px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(255,165,0,0.3);
+      backdrop-filter: blur(5px);
+      animation: slideIn 1s ease-out;
+    }
 
-/* Specifics for Always Visible Form (layout within its .slide container) */
-.always-visible-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 0; /* Gap is handled by .form-field margin */
-}
-.always-visible-form h2 { /* Ensure h2 inside this specific slide is also styled */
-  color: #f7931a;
-  animation: pulse 2s infinite;
-}
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
 
-.iframe-slide iframe {
-  width:100%;
-  height:500px; /* Adjust height as needed */
-  border:none;
-  margin-top: 15px;
-  border-radius: 5px; /* Optional: rounded corners for iframe */
-}
+    h1, h2 {
+      color: #f7931a;
+      animation: pulse 2s infinite;
+    }
 
-.whatsapp-btn{
-  position:fixed;bottom:20px;right:20px;background:#25D366;
-  color:#fff;border-radius:50px;padding:12px 18px;font-size:1.2em;
-  font-weight:700;text-decoration:none;
-  box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:10;
-  animation: shake 1.5s infinite;
-  display: flex; /* For icon alignment if you add one */
-  align-items: center;
-}
-@keyframes shake{
-  0%,100%{transform:translateX(0) rotate(0)}
-  20%{transform:translateX(-3px) rotate(-3deg)}
-  40%{transform:translateX(3px) rotate(3deg)}
-  60%{transform:translateX(-3px) rotate(-3deg)}
-  80%{transform:translateX(3px) rotate(3deg)}
-}
-</style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    .cta {
+      background: #0284c7;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+
+    .cta:hover {
+      background: #026ba7;
+      transform: scale(1.05) translateY(-3px);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .iframe-slide iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,.3);
+      display: flex;
+      align-items: center;
+      z-index: 10;
+      animation: shake 1.5s infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-3px); }
+      40%, 80% { transform: translateX(3px); }
+    }
+  </style>
 </head>
 <body>
-<div class="background" id="background"></div>
-<div class="main-content">
-  <div class="slide">
-    <h1>HostedOp</h1>
-    <p>Powering Crypto Mining, Cloud, & AI with Hosted Solutions.</p>
-    <h2>Welcome to HostedOp</h2>
-    <p>Explore crypto mining and AI investment opportunities.</p>
-    <button class="cta" onclick="showPopupForm()">Inquire Now</button>
+  <div class="background" id="background"></div>
+
+  <div class="main-content">
+    <div class="slide">
+      <h1>HostedOp</h1>
+      <p>Powering Crypto Mining, Cloud, & AI with Hosted Solutions.</p>
+      <h2>Welcome to HostedOp</h2>
+      <p>Explore crypto mining and AI investment opportunities.</p>
+      <a href="#inquire" class="cta">Inquire Now</a>
+    </div>
+
+    <div class="slide">
+      <h2>Ethereum Classic Mining Stats</h2>
+      <p>Real-time insights from our ETC mining operations.</p>
+      <a href="https://njweb.solutions/etc" target="_blank" rel="noopener noreferrer" class="cta">Check ETC Stats</a>
+    </div>
+
+    <div class="slide">
+      <h2>Unmineable Hashrate Rentals</h2>
+      <p>Hashrate rentals on Unmineable.com.</p>
+      <a href="https://njweb.solutions/unmineable-LTC" target="_blank" rel="noopener noreferrer" class="cta">View LTC Dashboard</a>
+    </div>
+
+    <div class="slide iframe-slide">
+      <h2>Mining Profitability</h2>
+      <p>Mining calculator (standard 10¢/kWh). Plug in our competitive 9¢ rate for comparison!</p>
+      <iframe src="https://hashrate.no/asics" title="Mining Profitability Calculator"></iframe>
+    </div>
   </div>
 
-  <div class="slide">
-    <h2>Ethereum Classic Mining Stats</h2>
-    <p>Real-time insights from our ETC mining operations.</p>
-    <a href="https://njweb.solutions/etc" target="_blank" rel="noopener noreferrer" class="cta">Check ETC Stats</a>
-  </div>
+  <a href="https://wa.me/+19085776850" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">Chat on WhatsApp</a>
 
-  <div class="slide">
-    <h2>Unmineable Hashrate Rentals</h2>
-    <p>Hashrate rentals on Unmineable.com.</p>
-    <a href="https://njweb.solutions/unmineable-LTC" target="_blank" rel="noopener noreferrer" class="cta">View LTC Dashboard</a>
-  </div>
+  <script>
+    const emojis = ["₿", "☁️", "🤖", "🦾", "⚡", "💰", "🔗"];
+    const background = document.getElementById("background");
 
-  <div class="slide iframe-slide">
-    <h2>Mining Profitability</h2>
-    <p>Mining calculator (standard 10¢/kWh). Plug in our competitive 9¢ rate for comparison!</p>
-    <iframe src="https://hashrate.no/asics" title="Mining Profitability Calculator"></iframe>
-  </div>
+    function createEmoji() {
+      const span = document.createElement("span");
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDelay = "0s";
+      span.style.animationDuration = (6 + Math.random() * 4) + "s, 6s";
+      span.style.fontSize = (1.5 + Math.random() * 2) + "em";
+      background.appendChild(span);
+      span.addEventListener('animationend', () => span.remove());
+    }
 
-  <div class="slide always-visible-form">
-    <h2>Accredited Investor Inquiry</h2>
-    <form action="https://blastlabs.net/hostedop" method="POST">
-      <div class="form-field">
-        <label for="inline_name">Full Name</label>
-        <input type="text" id="inline_name" name="name" placeholder="e.g., Jane Doe" required>
-      </div>
-      <div class="form-field">
-        <label for="inline_email">Email Address</label>
-        <input type="email" id="inline_email" name="email" placeholder="e.g., jane.doe@example.com" required>
-      </div>
-      <div class="form-field">
-        <label for="inline_investor_status">Accredited investor status</label>
-        <textarea id="inline_investor_status" name="investor_status" placeholder="e.g., Yes, I meet the SEC criteria / No" required></textarea>
-      </div>
-      <div class="form-field">
-        <label for="inline_financial_background">Financial background and experience</label>
-        <textarea id="inline_financial_background" name="financial_background" placeholder="Briefly describe your investment experience" required></textarea>
-      </div>
-      <div class="form-field">
-        <label for="inline_investment_goals">Investment goals with HostedOp?</label>
-        <textarea id="inline_investment_goals" name="investment_goals" placeholder="What are you looking to achieve?" required></textarea>
-      </div>
-      <button type="submit" class="form-submit-button">Submit Inquiry</button>
-    </form>
-  </div>
-</div>
-
-<form class="form-container" id="form-container-popup" action="https://blastlabs.net/hostedop" method="POST">
-  <h3>Accredited Investor Inquiry</h3>
-  <button type="button" class="close-btn" onclick="hidePopupForm()" aria-label="Close form">X</button>
-  <div class="form-field">
-    <label for="popup_name">Full Name</label>
-    <input type="text" id="popup_name" name="name" placeholder="e.g., John Smith" required>
-  </div>
-  <div class="form-field">
-    <label for="popup_email">Email Address</label>
-    <input type="email" id="popup_email" name="email" placeholder="e.g., john.smith@example.com" required>
-  </div>
-  <div class="form-field">
-    <label for="popup_investor_status">Accredited investor status</label>
-    <textarea id="popup_investor_status" name="investor_status" placeholder="e.g., Yes, I meet the SEC criteria / No" required></textarea>
-  </div>
-  <div class="form-field">
-    <label for="popup_financial_background">Financial background and experience</label>
-    <textarea id="popup_financial_background" name="financial_background" placeholder="Briefly describe your investment experience" required></textarea>
-  </div>
-  <div class="form-field">
-    <label for="popup_investment_goals">Investment goals with HostedOp?</label>
-    <textarea id="popup_investment_goals" name="investment_goals" placeholder="What are you looking to achieve?" required></textarea>
-  </div>
-  <button type="submit" class="form-submit-button">Submit Inquiry</button>
-</form>
-
-<a href="https://wa.me/+19085776850" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">Chat on WhatsApp</a>
-
-<script>
-const popupForm = document.getElementById("form-container-popup");
-
-function showPopupForm(){
-  popupForm.classList.add("active"); // Add class to trigger animation and display
-}
-
-function hidePopupForm(){
-  popupForm.classList.remove("active"); // Remove class
-  // Optionally, set display to none after animation if animation doesn't hide it fully
-  // setTimeout(() => { if (!popupForm.classList.contains('active')) popupForm.style.display = "none"; }, 500); // Match animation duration
-}
-
-const emojis=["₿","☁️","🤖","🦾","⚡","💰","🔗"],background=document.getElementById("background");
-const numEmojis = Math.min(50, Math.floor(window.innerWidth / 50)); // Adjust emoji count based on width
-
-for(let i=0; i<numEmojis; i++){ // Dynamically generate fewer emojis on smaller screens
-  const span=document.createElement("span");
-  span.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-  span.style.left=`${Math.random()*100}vw`;
-  span.style.animationDelay=`${Math.random()*5}s`; // Stagger animations
-  span.style.animationDuration=`${8+Math.random()*12}s, ${5+Math.random()*5}s, ${3+Math.random()*4}s`; // Randomize each animation duration
-  span.style.fontSize=`${1.5+Math.random()*2}em`;
-  background.appendChild(span);
-}
-</script>
+    setInterval(createEmoji, 200); // Add new emoji every 200ms
+  </script>
 </body>
 </html>
