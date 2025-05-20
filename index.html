@@ -111,9 +111,84 @@
       20%, 60% { transform: translateX(-3px); }
       40%, 80% { transform: translateX(3px); }
     }
+    <style>
+  .form-popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 20;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .form-content {
+    background: #222;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    color: #fff;
+    position: relative;
+  }
+
+  .form-content h2 {
+    margin-top: 0;
+    color: #f7931a;
+  }
+
+  .form-content input, .form-content textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+
+  .form-content button {
+    padding: 12px 25px;
+    background: #0284c7;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .form-content .alt-btn {
+    background: #f7931a;
+    margin-left: 10px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .close-btn:hover {
+    color: #f7931a;
+  }
   </style>
 </head>
 <body>
+  <div class="form-popup" id="inquiryForm">
+    <div class="form-content">
+      <span class="close-btn" onclick="toggleForm()">×</span>
+      <h2>Inquire About HostedOp</h2>
+      <p>Fill in your details and we'll get back to you.</p>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5"></textarea>
+      <button type="submit">Submit Inquiry</button>
+      <button type="button" class="alt-btn" onclick="toggleForm()">Maybe Later</button>
+    </div>
+  </div>
   <div class="background" id="background"></div>
 
   <div class="main-content">
@@ -132,8 +207,8 @@
     </div>
 
     <div class="slide">
-      <h2>Unmineable Hashrate Rentals</h2>
-      <p>Hashrate rentals on Unmineable.com.</p>
+      <h2>Unmineable Crypto Mining Autoswap to Litecoin</h2>
+      <p>Unmineable.com</p>
       <a href="https://njweb.solutions/unmineable-LTC" target="_blank" rel="noopener noreferrer" class="cta">View LTC Dashboard</a>
     </div>
 
